@@ -41,6 +41,7 @@ class _IslmaiHomeScreenState extends State<IslmaiHomeScreen> {
         fit: BoxFit.cover,
         ),
         Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
               canvasColor: AppColors.primaryDark
