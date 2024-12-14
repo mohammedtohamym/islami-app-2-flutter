@@ -14,7 +14,7 @@ class SuraDetailsScreen extends StatefulWidget {
 
 class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   List<String> verses = [];
-
+  int? pressedIndex ;
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SuraModel;
@@ -37,6 +37,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             children: [
               SizedBox(height: 17,),
               Text(args.suraArabicName, style: TextStyle(color: AppColors.primaryDark, fontSize: 22),textAlign: TextAlign.center,),
+              SizedBox(height: 60,),
               Expanded(
                 child: verses.isEmpty?
                  Center(
@@ -44,11 +45,20 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                  )
                 :
                 ListView.builder(itemBuilder: (context,index){
-                  return SuraContentItem(content: verses[index]);
+                  return InkWell(
+                    onTap: (){
+                      pressedIndex = index;
+                      setState(() {
+
+                      });
+                    },
+                      child: SuraContentItem(content: verses[index], index: index,
+                      pressedIndex: pressedIndex,)
+                  );
                 },
                 itemCount: verses.length,),
               ),
-
+              SizedBox(height: 100,)
             ],
           )
         ],
@@ -59,9 +69,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   void loadSuraFile(int index) async{
     String suraContent = await rootBundle.loadString('assets/files/${index+1}.txt');
     List<String> suraLines = suraContent.split('\n');
-    for(int i = 0; i < suraLines.length; i++){
-      print(suraLines[i]);
-    }
+    // for(int i = 0; i < suraLines.length; i++){
+    //   print(suraLines[i]);
+    // }
     verses = suraLines;
     setState(() {
 
