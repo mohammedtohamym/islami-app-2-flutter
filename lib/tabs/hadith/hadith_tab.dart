@@ -1,3 +1,5 @@
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/app_colors.dart';
@@ -20,14 +22,22 @@ class _HadithTabState extends State<HadithTab> {
       loadHadithFile();
     }
     return Container(
-      child: ListView.builder(itemBuilder: (context, index){
+      child: CarouselSlider.builder(itemCount: 2,
+          itemBuilder: (context, index, pageindex){
         return Text(hadithList[index].title,
         style: TextStyle(color: AppColors.primaryDark),);
-      },
-      itemCount: hadithList.length,
+      }
+          , options: CarouselOptions()),
+
+      // child: ListView.builder(itemBuilder: (context, index){
+      //   return Text(hadithList[index].title,
+      //   style: TextStyle(color: AppColors.primaryDark),);
+      // },
+      // itemCount: hadithList.length,
+
       // scrollDirection: Axis.horizontal,
-      ),
-    );
+      );
+    // );
   }
 
   void loadHadithFile()async{
