@@ -27,7 +27,10 @@ class _HadithTabState extends State<HadithTab> {
         return Text(hadithList[index].title,
         style: TextStyle(color: AppColors.primaryDark),);
       }
-          , options: CarouselOptions()),
+          , options: CarouselOptions(
+            viewportFraction: .8,
+            height: 500
+          )),
 
       // child: ListView.builder(itemBuilder: (context, index){
       //   return Text(hadithList[index].title,
